@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 # open file
-url_1 = "https://raw.githubusercontent.com/Anuu1990/Final-Project/refs/heads/main/My_Electricity_Consumption.csv"
-url_2 = "https://raw.githubusercontent.com/Anuu1990/Final-Project/refs/heads/main/My_sahkon-hinta-010121-231024.csv"
+url_1 = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/My_Electricity_Consumption.csv"
+url_2 = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/My_sahkon-hinta-010121-231024.csv"
 df_electricity_data = pd.read_csv(
     url_1, delimiter=';')
 df_price_data = pd.read_csv(
