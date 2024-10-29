@@ -4,10 +4,12 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 # open file
+url_1 = "https://raw.githubusercontent.com/Anuu1990/Final-Project/refs/heads/main/My_Electricity_Consumption.csv"
+url_2 = "https://raw.githubusercontent.com/Anuu1990/Final-Project/refs/heads/main/My_sahkon-hinta-010121-231024.csv"
 df_electricity_data = pd.read_csv(
-    'My_Electricity_Consumption.csv', delimiter=';')
+    url_1, delimiter=';')
 df_price_data = pd.read_csv(
-    'My_sahkon-hinta-010121-231024.csv', delimiter=';')
+    url_2, delimiter=';')
 
 # Change time format of both files to Pandas datetime
 df_electricity_data['Time'] = pd.to_datetime(
