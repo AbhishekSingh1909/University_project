@@ -53,8 +53,11 @@ def plot_with_custom_y(data, y_column, y_label, y_min=None, y_max=None):
 
 
 # open file
+electricity_consumption_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/My_Electricity_Consumption.csv"
+electricity_price_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/download_sahkon-hinta-010121-311024.xlsx"
+
 df_electricity_data = pd.read_csv(
-    'My_2022-2024_consumption.csv', delimiter=';')
+    electricity_consumption_url, delimiter=';')
 
 df_electricity_data['Time'] = pd.to_datetime(
     df_electricity_data['Time'], format='%d.%m.%Y %H:%M', errors='coerce')
@@ -69,7 +72,7 @@ df_electricity_data['Temperature'] = df_electricity_data['Temperature'].str.repl
 
 # new price file
 df_price_data = pd.read_excel(
-    "download_sahkon-hinta-010121-311024.xlsx", skiprows=3)
+    electricity_price_url, skiprows=3)
 
 # Drop unnecessary columns if any (e.g., 'Unnamed: 0')
 if 'Unnamed: 0' in df_price_data.columns:
