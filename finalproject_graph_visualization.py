@@ -54,6 +54,7 @@ def plot_with_custom_y(data, y_column, y_label, y_min=None, y_max=None):
 
 # open file
 electricity_consumption_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/My_2022-2024_consumption.csv"
+
 electricity_price_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/sahkon-hinta-010121-311024.csv"
 
 df_electricity_data = pd.read_csv(
