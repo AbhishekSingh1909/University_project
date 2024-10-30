@@ -73,7 +73,7 @@ df_electricity_data['Temperature'] = df_electricity_data['Temperature'].str.repl
 
 # new price file
 df_price_data = pd.read_csv(
-    "sahkon-hinta-010121-311024.csv", skiprows=3, usecols=['Aika', 'Hinta (snt/kWh)'])
+    electricity_price_url, skiprows=3, usecols=['Aika', 'Hinta (snt/kWh)'])
 
 df_price_data.columns = ['Time', 'Price (cent/kWh)']
 
