@@ -53,8 +53,8 @@ def plot_with_custom_y(data, y_column, y_label, y_min=None, y_max=None):
 
 
 # open file
-electricity_consumption_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/My_2022-2024_consumption.csv"
-electricity_price_url = "https://raw.githubusercontent.com/AbhishekSingh1909/University_project/refs/heads/main/download_sahkon-hinta-010121-311024.xlsx"
+electricity_consumption_url = "My_2022-2024_consumption.csv"
+electricity_price_url = "sahkon-hinta-010121-311024.csv"
 
 df_electricity_data = pd.read_csv(
     electricity_consumption_url, delimiter=';')
@@ -71,26 +71,22 @@ df_electricity_data['Temperature'] = df_electricity_data['Temperature'].str.repl
     ',', '.').astype(float)
 
 # new price file
-df_price_data = pd.read_excel(
-    electricity_price_url, skiprows=3)
-
-# Drop unnecessary columns if any (e.g., 'Unnamed: 0')
-if 'Unnamed: 0' in df_price_data.columns:
-    df_price_data = df_price_data.drop(columns='Unnamed: 0')
+df_price_data = pd.read_csv(
+    "sahkon-hinta-010121-311024.csv", skiprows=3, usecols=['Aika', 'Hinta (snt/kWh)'])
 
 df_price_data.columns = ['Time', 'Price (cent/kWh)']
 
 df_price_data['Time'] = pd.to_datetime(
-    df_price_data['Time'], format='%Y-%m-%d %H:%M:%s', errors='coerce').dt.round('h')
+    df_price_data['Time'], format='%d-%m-%Y %H:%M:%S', errors='coerce').dt.round('h')
 
 df_price_data['Price (cent/kWh)'] = df_price_data['Price (cent/kWh)'].astype(float)
 
 
 # Merge the datasets on the 'Time' column
 data_merge = pd.merge(df_electricity_data, df_price_data,
-                      on='Time', how='outer')
+                      on='Time', how='left')
 
-
+print(data_merge.head(100))
 # Calculate the hourly bill (convert price from cents to euros)
 data_merge['Hourly Bill (€)'] = data_merge['Energy(kWh)'] * \
     (data_merge['Price (cent/kWh)'] / 100)
